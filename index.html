@@ -1,0 +1,98 @@
+==============================
+FRAME-BY-FRAME VIEWER - index.html
+==============================
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frame-by-Frame Viewer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <h1>🎞️ Frame-by-Frame Viewer</h1>
+      <p class="subtitle">Visor web para revisión y captura de fotogramas</p>
+    </header>
+
+    <section class="panel upload-panel">
+      <label for="videoInput" class="file-label">Seleccionar video</label>
+      <input type="file" id="videoInput" accept="video/*" />
+      <div class="meta-row">
+        <span id="videoName">Sin archivo cargado</span>
+        <span id="frameInfo">Frame: -</span>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel viewer-panel">
+        <h2>Video</h2>
+        <video id="video" controls playsinline></video>
+
+        <div class="controls-grid">
+          <button id="prevFrameBtn" type="button">⏮ Frame -</button>
+          <button id="nextFrameBtn" type="button">⏭ Frame +</button>
+          <button id="captureBtn" type="button">📸 Capturar</button>
+          <button id="resetViewBtn" type="button">♻️ Reset vista</button>
+        </div>
+
+        <div class="time-row">
+          <label for="seekBar">Posición</label>
+          <input type="range" id="seekBar" min="0" max="100" value="0" step="0.01" />
+          <span id="timeLabel">00:00 / 00:00</span>
+        </div>
+      </div>
+
+      <div class="panel canvas-panel">
+        <h2>Fotograma capturado</h2>
+        <div class="canvas-wrap">
+          <canvas id="canvas" width="960" height="540"></canvas>
+        </div>
+
+        <div class="selection-row">
+          <span id="selectionInfo">Selección: ninguna</span>
+        </div>
+
+        <div class="controls-grid">
+          <button id="cropBtn" type="button">✂️ Recortar selección</button>
+          <button id="downloadFrameBtn" type="button">💾 Descargar captura</button>
+          <button id="downloadCropBtn" type="button">🧩 Descargar recorte</button>
+          <button id="clearSelectionBtn" type="button">🧼 Limpiar selección</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel tools-panel">
+      <h2>Ajustes</h2>
+
+      <div class="sliders">
+        <div class="slider-group">
+          <label for="brightnessRange">Brillo</label>
+          <input type="range" id="brightnessRange" min="0.4" max="2.2" step="0.1" value="1" />
+          <span id="brightnessValue">1.0</span>
+        </div>
+
+        <div class="slider-group">
+          <label for="contrastRange">Contraste</label>
+          <input type="range" id="contrastRange" min="0.4" max="2.5" step="0.1" value="1" />
+          <span id="contrastValue">1.0</span>
+        </div>
+
+        <div class="slider-group">
+          <label for="zoomRange">Zoom</label>
+          <input type="range" id="zoomRange" min="1" max="4" step="0.1" value="1" />
+          <span id="zoomValue">1.0x</span>
+        </div>
+      </div>
+
+      <div class="hint-box">
+        <strong>Uso:</strong> carga un video, avanza frame a frame, captura el fotograma y luego ajusta brillo, contraste y zoom.
+        Puedes marcar una zona en el canvas con el mouse y descargar el recorte.
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
